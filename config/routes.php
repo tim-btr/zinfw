@@ -10,5 +10,6 @@
  *
  */
 return [
+	'' => 'main/index',
 	'article' => 'article/index',
 ];

@@ -41,7 +41,7 @@ class Router
 					include ($fileName);
 				}
 
-				$contObj = new ArticleController();
+				$contObj = new $controllerName();
 				$result = $contObj->$actionName();
 
 				if($result != null) {
