@@ -7,10 +7,11 @@ ini_set('display_errors', 1);
 
 
 //Подключение файлов системы
-include_once __DIR__.'/components/Router.php';
+const ROOT = __DIR__;
+include_once ROOT.'/components/Router.php';
 
 //Коннект с БД
 
 //Router
 $router = new components\Router();
-echo $router->run();
+$router->run();
