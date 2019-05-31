@@ -4,12 +4,17 @@
  * Каждому запросу, что был введён в адресной строке (ключ) будет соответствовать
  * определённая строка (значение), где будут содержаться метод и контроллер.
  * Пример:
- * /news => news/index
- * Что означает - при запросе на http://site.com/news будет вызываться контроллер
- * NewsController и его метод actionIndex.
+ * /article => article/index
+ * Что означает - при запросе на http://site.com/article будет вызываться контроллер
+ * ArticleController и его метод actionIndex.
  *
  */
 return [
+	//главная страница
 	'' => 'main/index',
+
+	//страница материалов
+	'article/([a-z]+)/([0-9]+)' => 'article/single/$1/$2',
 	'article' => 'article/index',
+
 ];

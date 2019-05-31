@@ -15,10 +15,10 @@ class Router
 	/**
 	 * @return mixed
 	 * Алгоритм:
-	 * -получить строку запроса;
-	 * -найти совпадения;
-	 * -если есть совпадение, то выбрать и определить контроллер и метод;
-	 * -реализовать объект
+	 * -1. получить строку запроса;
+	 * -2. найти совпадения;
+	 * -3. если есть совпадение, то выбрать и определить контроллер, метод, парам-ы;
+	 * -4. реализовать объект
 	 */
 	public function run()
 	{
@@ -27,12 +27,15 @@ class Router
 
 		//алг. 2
 		foreach ($this->routes as $k => $v) {
-			if (preg_match('#^'.$uri.'$#ui', $k)) {
+			if (preg_match('#^'.$k.'$#ui', $uri)) {
 
-				//алг. 3
-				$temp = explode('/', $v);
-				$controllerName = ucfirst(array_shift($temp).'Controller');
-				$actionName = 'action'.ucfirst(array_shift($temp));
+				//определяем внутренний путь
+				$temp = preg_replace('#^'.$k.'$#ui', $v, $uri);
+
+				//алг. 3 получаем controller action and params
+				$params = explode('/', $temp);
+				$controllerName = ucfirst(array_shift($params).'Controller');
+				$actionName = 'action'.ucfirst(array_shift($params));
 
 				//алг. 4
 				$fileName = ROOT.'/controllers/'.$controllerName.'.php';
@@ -41,8 +44,9 @@ class Router
 					include ($fileName);
 				}
 
+				//Вызываем обект и через функцию передаём параметры.
 				$contObj = new $controllerName();
-				$result = $contObj->$actionName();
+				$result = call_user_func_array([$contObj, $actionName], $params);
 
 				if($result != null) {
 					break;
