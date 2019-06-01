@@ -1,15 +1,16 @@
 <?php
+include ROOT.'/models/Articles.php';
+
 class ArticleController
 {
 	public function actionIndex()
 	{
-
-		return true;
+		$articlesList = Articles::getAllArticles();
+		include_once ROOT.'/views/articles/index.php';
 	}
 
-	public function actionSingle($category, $id)
+	public function actionSingle($id)
 	{
-
-		return true;
+		echo '<pre>'.print_r(Articles::getSingleArticle($id),1).'</pre>';
 	}
 }

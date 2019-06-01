@@ -14,7 +14,7 @@ return [
 	'' => 'main/index',
 
 	//страница материалов
-	'article/([a-z]+)/([0-9]+)' => 'article/single/$1/$2',
+	'article/([0-9]+)' => 'article/single/$1',
 	'article' => 'article/index',
 
 ];
