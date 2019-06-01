@@ -121,7 +121,7 @@
 								<p>
 									<?php echo htmlspecialchars($v['text']); ?>
 								</p>
-								<a href="single.html" class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
+								<a href="/article/<?php echo htmlspecialchars($v['id']);?>" class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
 							</div>
 							<!-- Blog Post End -->
 							<?php

@@ -9,7 +9,7 @@ class Articles
 			$db = Db::getConnection();
 
 			$res = $db->query("
-				SELECT `title`,`author`,`text` FROM `articles`
+				SELECT * FROM `articles`
 				WHERE `id` = ".$id
 			) or die($db->errorInfo());
 
@@ -30,6 +30,7 @@ class Articles
 		$show = [];
 		$i = 0;
 		while ($row = $res->fetch()) {
+			$show[$i]['id'] = $row['id'];
 			$show[$i]['title'] = $row['title'];
 			$show[$i]['author'] = $row['author'];
 			$show[$i]['text'] = $row['text'];
